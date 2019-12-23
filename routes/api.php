@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,4 +17,6 @@ use Illuminate\Http\Request;
 // });
 
 
+Route::post('login', 'Auth\LoginController@authenticate');
+Route::post('register', 'RegisterController@store');
 Route::resource('shops', 'ShopController');

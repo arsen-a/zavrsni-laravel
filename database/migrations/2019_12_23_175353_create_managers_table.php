@@ -19,7 +19,7 @@ class CreateManagersTable extends Migration
             $table->string('last_name');
             $table->string('image');
             $table->string('email');
-            $table->unsignedBigInteger('shop_id')->default(null);
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->timestamps();
         });
 
