@@ -26,9 +26,16 @@ class RegisterRequest extends FormRequest
         return [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'required',
+            'email' => 'required|unique:users|email|max:255',
+            'password' => 'required|min:8',
             'confirm_password' => 'required|same:password'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.required' => 'The password field is required with minimum of 8 characters and 1 number.'
         ];
     }
 }

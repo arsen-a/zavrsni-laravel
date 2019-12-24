@@ -18,8 +18,9 @@ class CreateManagersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('image');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->unsignedBigInteger('shop_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 
@@ -29,6 +30,7 @@ class CreateManagersTable extends Migration
 
         Schema::table('managers', function (Blueprint $table) {
             $table->foreign('shop_id')->references('id')->on('shops');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
