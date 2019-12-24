@@ -14,7 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return Shop::all();
+        return Shop::with('manager')->get();
     }
 
     /**
