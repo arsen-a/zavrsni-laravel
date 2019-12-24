@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Manager;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -11,9 +12,15 @@ class ManagerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->search) {
+            return Manager::where('first_name', 'like', '%' . $request->search . '%')
+                ->orWhere('last_name', 'like', '%' . $request->search . '%')
+                ->with('shop')->get();
+        }
+
+        return Manager::with('shop')->get();
     }
 
     /**

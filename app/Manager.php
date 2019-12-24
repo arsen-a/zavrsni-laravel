@@ -9,7 +9,7 @@ class Manager extends Model
 {
     protected $guarded = ['id'];
 
-    public function store() 
+    public function shop() 
     {
         return $this->hasOne(Shop::class);
     }
