@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewManagerRequest;
 use App\Manager;
+use App\Shop;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -39,9 +41,21 @@ class ManagerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewManagerRequest $request)
     {
-        //
+        $data = $request->all();
+        if ($data['shop_id'] === '') {
+            $data['shop_id'] = 'NULL';
+        }
+
+        $manager = Manager::create($data);
+        if ($data['shop_id']) {
+            $shop = Shop::find($data['shop_id']);
+            $shop->manager_id = $manager->id;
+            $shop->save();
+        }
+
+        return response()->json(['message' => 'Successfully created new manager.'], 200);
     }
 
     /**

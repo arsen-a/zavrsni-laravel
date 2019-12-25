@@ -64,7 +64,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        return Shop::find($id)->with('manager', 'articles')->first();
+        return Shop::with('manager', 'articles')->find($id);
     }
 
     /**
