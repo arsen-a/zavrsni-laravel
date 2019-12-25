@@ -52,7 +52,7 @@ class ManagerController extends Controller
      */
     public function show($id)
     {
-        //
+        return Manager::find($id)->with('shop')->first();
     }
 
     /**
