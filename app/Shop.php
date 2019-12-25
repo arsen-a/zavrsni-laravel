@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Manager;
+use App\Article;
 use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
@@ -12,5 +13,10 @@ class Shop extends Model
     public function manager()
     {
         return $this->belongsTo(Manager::class);
+    }
+
+    public function articles() 
+    {
+        return $this->hasMany(Article::class);
     }
 }

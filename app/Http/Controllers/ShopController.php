@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewShopRequest;
+use App\Manager;
 use App\Shop;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class ShopController extends Controller
         if ($request->search) {
             return Shop::where('name', 'like', '%' . $request->search . '%')->with('manager')->get();
         }
-        
+
         return Shop::with('manager')->get();
     }
 
@@ -37,9 +39,21 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewShopRequest $request)
     {
-        //
+        $data = $request->all();
+        if ($data['manager_id'] === '') {
+            $data['manager_id'] = 'NULL';
+        }
+
+        $shop = Shop::create($data);
+        if ($data['manager_id']) {
+            $manager = Manager::find($data['manager_id']);
+            $manager->shop_id = $shop->id;
+            $manager->save();
+        }
+
+        return response()->json(['message' => 'Successfully created new shop.'], 200);
     }
 
     /**
@@ -50,7 +64,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        return Shop::find($id)->with('manager', 'articles')->first();
     }
 
     /**
