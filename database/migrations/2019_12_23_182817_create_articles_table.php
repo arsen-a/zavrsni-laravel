@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->unsignedBigInteger('price');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image');
             $table->unsignedBigInteger('shop_id');
             $table->timestamps();

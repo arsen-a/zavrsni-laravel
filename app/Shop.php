@@ -4,6 +4,7 @@ namespace App;
 
 use App\Manager;
 use App\Article;
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
@@ -18,5 +19,10 @@ class Shop extends Model
     public function articles() 
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function comments() 
+    {
+        return $this->hasMany(Comment::class);
     }
 }

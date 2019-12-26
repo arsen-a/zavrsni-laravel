@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\NewCommentRequest;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -33,9 +34,11 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewCommentRequest $request)
     {
-        //
+        Comment::create($request->all());
+
+        return response()->json(['message' => 'Comment created successfully.'], 200);
     }
 
     /**
@@ -80,6 +83,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        Comment::where('id', '=', $comment->id)->delete();
+        
+        return response()->json(['message' => 'Comment deleted successfully.'], 200);
     }
 }

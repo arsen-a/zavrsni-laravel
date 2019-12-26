@@ -20,7 +20,7 @@ class ShopController extends Controller
             return Shop::where('name', 'like', '%' . $request->search . '%')->with('manager')->get();
         }
 
-        return Shop::with('manager')->get();
+        return Shop::with('manager', 'articles')->get();
     }
 
     /**
@@ -64,7 +64,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        return Shop::with('manager', 'articles')->find($id);
+        return Shop::with('manager', 'articles', 'comments')->find($id);
     }
 
     /**

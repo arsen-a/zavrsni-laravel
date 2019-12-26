@@ -20,4 +20,6 @@ use Illuminate\Http\Request;
 Route::post('login', 'Auth\LoginController@authenticate');
 Route::post('register', 'RegisterController@store');
 Route::resource('shops', 'ShopController');
-Route::resource('managers', 'ManagerController');
+Route::resource('managers', 'ManagerController')->middleware('auth.jwt');
+Route::resource('articles', 'ArticleController')->middleware('auth.jwt');
+Route::resource('comments', 'CommentController')->middleware('auth.jwt');

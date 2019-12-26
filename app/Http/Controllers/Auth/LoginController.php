@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -53,6 +54,8 @@ class LoginController extends Controller
             return response()->json(['error' => 'Could not create token.'], 500);
         }
 
-        return response()->json(['token' => $token]);
+        $user = DB::table('managers')->where('email', $request->email)->first();
+
+        return response()->json(['token' => $token, 'user_id' => $user->id]);
     }
 }
