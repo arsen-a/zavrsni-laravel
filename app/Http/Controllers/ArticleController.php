@@ -83,6 +83,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::where('id', '=', $article->id)->delete();
+        
+        return response()->json(['message' => 'Article deleted successfully.'], 200);        
     }
 }

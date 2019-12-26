@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('price');
             $table->text('description')->nullable();
             $table->string('image');
-            $table->unsignedBigInteger('shop_id');
+            $table->unsignedBigInteger('shop_id')->onDelete('cascade');
             $table->timestamps();
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');

@@ -15,12 +15,12 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $userInput = $request->all();
+        $userInput = $request->except('terms');
         $userInput['password'] = bcrypt($userInput['password']);
         User::create($userInput);
         
         $user = User::where('email', '=', $userInput['email'])->first();
-        $managerInput = $request->except('password', 'confirm_password');
+        $managerInput = $request->except('password', 'confirm_password', 'terms');
         $managerInput['image'] = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg';
         $managerInput['user_id'] = $user->id;
         Manager::create($managerInput);

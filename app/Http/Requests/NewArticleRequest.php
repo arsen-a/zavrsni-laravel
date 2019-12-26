@@ -26,7 +26,15 @@ class NewArticleRequest extends FormRequest
         return [
             'title' => 'required',
             'price' => 'required|int',
-            'image' => 'required'
+            'image' => 'required',
+            'shop_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'shop_id.required' => 'You must select a shop'
         ];
     }
 }

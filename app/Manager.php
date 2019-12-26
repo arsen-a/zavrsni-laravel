@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Shop;
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Manager extends Model
@@ -12,5 +13,10 @@ class Manager extends Model
     public function shop() 
     {
         return $this->hasOne(Shop::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

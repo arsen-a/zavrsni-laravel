@@ -19,7 +19,7 @@ class CreateManagersTable extends Migration
             $table->string('last_name');
             $table->string('image');
             $table->string('email')->unique();
-            $table->unsignedBigInteger('shop_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable()->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });

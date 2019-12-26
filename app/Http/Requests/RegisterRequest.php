@@ -27,15 +27,17 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|unique:users,email|email|max:255',
-            'password' => 'required|min:8',
-            'confirm_password' => 'required|same:password'
+            'password' => 'required|min:8|regex:/\w*[0-9]{1,}\w*/',
+            'confirm_password' => 'required|same:password',
+            'terms' => 'accepted'
         ];
     }
 
     public function messages()
     {
         return [
-            'password.required' => 'The password field is required with minimum of 8 characters and 1 number.'
+            'password.required' => 'The password field is required with minimum of 8 characters and 1 number.',
+            'terms.accepted' => 'You must accept terms and conditions.'
         ];
     }
 }

@@ -85,9 +85,12 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewShopRequest $request, $id)
     {
-        //
+        $shop = Shop::find($id);
+        $shop->update($request->all());
+
+        return $shop;
     }
 
     /**
@@ -98,6 +101,9 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Manager::where('id', $id)->update(['shop_id' => NULL]);
+        Shop::destroy($id);
+
+        return response()->json(['message' => 'Shop deleted.'], 200);
     }
 }
