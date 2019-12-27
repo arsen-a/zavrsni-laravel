@@ -33,6 +33,11 @@ class ShopController extends Controller
         return Shop::where('manager_id', NULL)->get();
     }
 
+    public function shopsForArticles()
+    {
+        return Shop::get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
