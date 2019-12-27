@@ -66,7 +66,7 @@ class ManagerController extends Controller
      */
     public function show($id)
     {
-        return Manager::find($id)->with('shop')->first();
+        return Manager::where('id', $id)->with('shop')->first();
     }
 
     /**

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.jwt')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +20,6 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            return Comment::where('shop_id', $request->search)->with('manager')->get();
-        }
-        
         return Comment::with('manager')->get();
     }
 
@@ -88,7 +89,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         Comment::where('id', '=', $comment->id)->delete();
-        
+
         return response()->json(['message' => 'Comment deleted successfully.'], 200);
     }
 }

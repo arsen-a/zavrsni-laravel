@@ -16,10 +16,11 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+//JWT middleware definisan u kontrolerima
 
 Route::post('login', 'Auth\LoginController@authenticate');
 Route::post('register', 'RegisterController@store');
 Route::resource('shops', 'ShopController');
-Route::resource('managers', 'ManagerController')->middleware('auth.jwt');
-Route::resource('articles', 'ArticleController')->middleware('auth.jwt');
-Route::resource('comments', 'CommentController')->middleware('auth.jwt');
+Route::resource('managers', 'ManagerController');
+Route::resource('articles', 'ArticleController');
+Route::resource('comments', 'CommentController');

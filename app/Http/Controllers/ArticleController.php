@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.jwt')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
