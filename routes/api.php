@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'Auth\LoginController@authenticate');
 Route::post('register', 'RegisterController@store');
+Route::get('shops/available', 'ShopController@availableShops');
 Route::resource('shops', 'ShopController');
 Route::resource('managers', 'ManagerController');
 Route::resource('articles', 'ArticleController');

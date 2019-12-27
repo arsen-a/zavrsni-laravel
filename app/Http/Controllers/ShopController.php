@@ -20,12 +20,17 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {        
         if ($request->search) {
-            return Shop::where('name', 'like', '%' . $request->search . '%')->with('manager')->get();
+            return Shop::where('name', 'like', '%' . $request->search . '%')->with('manager')->paginate(10);
         }
 
-        return Shop::with('manager', 'articles')->get();
+        return Shop::with('manager', 'articles')->paginate(10);
+    }
+
+    public function availableShops()
+    {
+        return Shop::where('manager_id', NULL)->get();
     }
 
     /**

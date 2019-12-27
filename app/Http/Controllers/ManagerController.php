@@ -47,7 +47,7 @@ class ManagerController extends Controller
         if ($data['shop_id'] === '') {
             $data['shop_id'] = 'NULL';
         }
-
+        
         $manager = Manager::create($data);
         if ($data['shop_id']) {
             $shop = Shop::find($data['shop_id']);
