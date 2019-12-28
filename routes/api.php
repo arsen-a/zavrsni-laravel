@@ -22,6 +22,7 @@ Route::post('login', 'Auth\LoginController@authenticate');
 Route::post('register', 'RegisterController@store');
 Route::get('shops/available', 'ShopController@availableShops');
 Route::get('shops/for-articles', 'ShopController@shopsForArticles');
+Route::get('shops/my-shop', 'ShopController@myShop');
 Route::resource('shops', 'ShopController');
 Route::resource('managers', 'ManagerController');
 Route::resource('articles', 'ArticleController');

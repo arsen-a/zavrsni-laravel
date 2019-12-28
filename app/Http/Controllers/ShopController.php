@@ -33,9 +33,15 @@ class ShopController extends Controller
         return Shop::where('manager_id', NULL)->get();
     }
 
+    //Ova metoda je iskoriscena i za MyShop komnponentu. Nije uredjeno zbog lenjosti...
     public function shopsForArticles()
     {
         return Shop::get();
+    }
+
+    public function myShop()
+    {
+        return Shop::with('manager', 'articles')->get();
     }
 
     /**
