@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Http\Requests\NewArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
@@ -39,11 +39,32 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewArticleRequest $request)
+    public function store(Request $request)
     {
-        Article::create($request->all());
+        $succeded = [];
+        $failed = 0;
         
-        return response()->json(['message' => 'Successfully created new article.'], 200);
+        foreach ($request->all() as $index => $article) {
+            $validator = Validator::make($article, [
+                'title' => 'required',
+                'price' => 'required|int',
+                'image' => 'required|url',
+                'shop_id' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                $failed++;
+            } else {
+                array_push($succeded, $index);
+                Article::create($article);
+            }
+        }
+
+        if ($failed > 0) {
+            return response()->json(['succeded' => $succeded, 'errors' => true, 'message' => 'Some articles failed to submit']);
+        } else {
+            return response()->json(['message' => 'All created successfully.', 'errors' => false], 200);
+        }
     }
 
     /**
@@ -89,7 +110,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         Article::where('id', '=', $article->id)->delete();
-        
-        return response()->json(['message' => 'Article deleted successfully.'], 200);        
+
+        return response()->json(['message' => 'Article deleted successfully.'], 200);
     }
 }

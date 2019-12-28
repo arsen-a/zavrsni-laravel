@@ -11,7 +11,7 @@ class ShopController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.jwt')->except('index');
+        $this->middleware('auth.jwt')->except('index', 'show');
     }
     
     /**
@@ -116,7 +116,7 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        Manager::where('id', $id)->update(['shop_id' => NULL]);
+        Manager::where('shop_id', $id)->update(['shop_id' => NULL]);
         Shop::destroy($id);
 
         return response()->json(['message' => 'Shop deleted.'], 200);
