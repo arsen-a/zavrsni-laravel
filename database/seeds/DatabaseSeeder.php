@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    // izvinjavam se na groznom sideru
     public function run()
     {
         DB::table('users')->insert(
@@ -38,5 +39,37 @@ class DatabaseSeeder extends Seeder
         DB::table('shops')->insert(
             ['name' => 'Gigatron', 'logo' => 'https://usceshoppingcenter.rs/wp-content/uploads/2017/03/gigatron-logo.jpg', 'created_at' => Carbon::now()]
         );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
+        DB::table('shops')->insert(
+            ['name' => 'Test', 'logo' => 'https://thedesignlove.com/wp-content/uploads/2019/04/448-Egg-Shop-Logo-Template-350x323.jpg', 'created_at' => Carbon::now()]
+        );
     }
 }
+
+
