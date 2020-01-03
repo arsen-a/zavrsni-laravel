@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         DB::table('managers')->insert(
             ['first_name' => 'Test', 'last_name' => 'Testovic', 'email' => 'test@test.com', 'image' => 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg', 'user_id' => 1]
         );
+        DB::table('users')->where('id', 1)->update(['manager_id' => 1]);
 
         DB::table('users')->insert(
             ['first_name' => 'Arsen', 'last_name' => 'Sekularac', 'email' => 'arsen@test.com', 'password' => bcrypt('test1234')]
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
         DB::table('managers')->insert(
             ['first_name' => 'Arsen', 'last_name' => 'Sekularac', 'email' => 'arsen@test.com', 'image' => 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg', 'user_id' => 2]
         );
+        DB::table('users')->where('id', 2)->update(['manager_id' => 2]);
+
 
         DB::table('shops')->insert(
             ['name' => 'Emmi', 'logo' => 'https://poslovi.infostud.com/posao/logo/5a4f9aca112c4_emmilogo.jpg', 'manager_id' => 1, 'created_at' => Carbon::now()]

@@ -23,7 +23,9 @@ class RegisterController extends Controller
         $managerInput = $request->except('password', 'confirm_password', 'terms');
         $managerInput['image'] = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg';
         $managerInput['user_id'] = $user->id;
-        Manager::create($managerInput);
+        $manager = Manager::create($managerInput);
+        $user->manager_id = $manager->id;
+        $user->save();
 
         return response()->json(['message' => 'Register successfull'], 200);
     }

@@ -32,6 +32,10 @@ class CreateManagersTable extends Migration
             $table->foreign('shop_id')->references('id')->on('shops');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('manager_id')->references('id')->on('managers');
+        });
     }
 
     /**
